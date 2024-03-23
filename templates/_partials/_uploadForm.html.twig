@@ -1,0 +1,7 @@
+{{ form_start(formUpload) }}
+    <div class="d-flex gap-2 container text-center">
+        {{ form_row(formUpload.file, {'attr' : {'class' : 'form-control', 'accept' : '.xls,.xlsx'}}) }}
+        <button type="submit" class="btn btn-secondary">Sauvegarder</button>
+        <a href="{{ path('app_main_ajout') }}" class="btn btn-primary ms-auto" type="button">Nouvelle ligne</a>
+    </div>
+{{ form_end(formUpload) }}
