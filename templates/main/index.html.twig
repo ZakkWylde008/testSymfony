@@ -8,7 +8,7 @@
     {{ parent() }}
     <style>
         body {
-            background-color: #00D9EB !important;
+            background-color: #FFFFFF !important;
         }
     </style>
 {% endblock %}
@@ -44,7 +44,7 @@
                     <td>Blalalalalala</td>
                     <td>Blalalalalala</td>
                     <td>
-                        <button class="btn btn-success">Modifier</button>
+                        <a href="{{ path('app_invoice_modification', {'id': 1}) }}" class="btn btn-success">Modifier</a>
                         <button class="btn btn-danger">Supprimer</button>
                     </td>
                 </tr>
@@ -58,7 +58,7 @@
                     <td>Blililililili</td>
                     <td>Blililililili</td>
                     <td>
-                        <button class="btn btn-success">Modifier</button>
+                        <a href="{{ path('app_invoice_modification', {'id': 2}) }}" class="btn btn-success">Modifier</a>
                         <button class="btn btn-danger">Supprimer</button>
                     </td>
                 </tr>
