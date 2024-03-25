@@ -1,0 +1,14 @@
+{{ form_start(formInvoice) }}
+    {{ form_row(formInvoice.fileNumber, {'attr' : {'class' : 'form-control'}}) }}
+    {{ form_row(formInvoice.businessAccount, {'attr' : {'class' : 'form-control'}}) }}
+    {{ form_row(formInvoice.customer, {'attr' : {'class' : 'form-control'}}) }}
+    {{ form_row(formInvoice.car, {'attr' : {'class' : 'form-control'}}) }}
+    {{ form_row(formInvoice.seller, {'attr' : {'class' : 'form-control'}}) }}
+    {{ form_row(formInvoice.prospectType, {'attr' : {'class' : 'form-control'}}) }}
+    {{ form_row(formInvoice.invoiceComment, {'attr' : {'class' : 'form-control'}}) }}
+    {{ form_row(formInvoice.deliveryDate, {'attr' : {'class' : 'form-control'}}) }}
+    <div class="pt-3 gap-2">
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+        <a href="{{ path('app_main') }}"  class="btn btn-dark" type="button">Retour</a>
+    </div>
+{{ form_end(formInvoice) }}

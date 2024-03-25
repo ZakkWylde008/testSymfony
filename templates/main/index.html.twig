@@ -4,12 +4,85 @@
     Test Symfony
 {% endblock %}
 
-{% block body %}
+{% block stylesheets %}
+    {{ parent() }}
     <style>
-
+        body {
+            background-color: #FFFFFF !important;
+        }
     </style>
+{% endblock %}
 
-    <div class="container text-center">
-        <h1>{{ test }}</h1>
+{% block body %}
+    <div class="mt-2 w-50 container text-center">
+        <h1 class="text-black">Test Symfony</h1>
     </div>
+    {% include "_partials/_uploadForm.html.twig" %}
+    <div class="p-3 mt-5">
+        <table id="myTable">
+            <thead>
+                <tr>
+                    {% for title in tableTitle %}
+                        <th>{{ title }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for tabledata in tableData %}
+                    <tr>
+                        <td>{{ tabledata.fileNumber }}</td>
+                        <td>{{ tabledata.businessAccount }}</td>
+                        <td>{{ tabledata.customer.name }} {{ tabledata.customer.firstname }}</td>
+                        <td>{{ tabledata.car.brandName }} \ {{ tabledata.car.registration }}</td>
+                        <td>{{ tabledata.seller.folderNumberVNVO }}</td>
+                        <td>{{ tabledata.prospectType }}</td>
+                        <td>{{ tabledata.invoiceComment }}</td>
+                        <td>{{ tabledata.deliveryDate | date("d-m-Y") }}</td>
+                        <td>
+                            <a href="{{ path('app_invoice_modification', { 'id': tabledata.id }) }}" class="btn btn-success">Modifier</a>
+                            <a href="{{ path('app_invoice_suppression', { 'id': tabledata.id }) }}" class="btn btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('#myTable').DataTable({
+                "language": {
+                    "sEmptyTable":     "Aucune donnée disponible dans le tableau",
+                    "sInfo":           "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments",
+                    "sInfoEmpty":      "Affichage de l'élément 0 à 0 sur 0 éléments",
+                    "sInfoFiltered":   "(filtré à partir de _MAX_ éléments au total)",
+                    "sInfoPostFix":    "",
+                    "sInfoThousands":  ",",
+                    "sLengthMenu":     "Afficher _MENU_ éléments",
+                    "sLoadingRecords": "Chargement...",
+                    "sProcessing":     "Traitement...",
+                    "sSearch":         "Rechercher :",
+                    "sZeroRecords":    "Aucun élément correspondant trouvé",
+                    "oPaginate": {
+                        "sFirst":    "Premier",
+                        "sLast":     "Dernier",
+                        "sNext":     "Suivant",
+                        "sPrevious": "Précédent"
+                    },
+                    "oAria": {
+                        "sSortAscending":  ": activer pour trier la colonne par ordre croissant",
+                        "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
+                    },
+                    "select": {
+                        "rows": {
+                            "_": "%d lignes sélectionnées",
+                            "0": "Aucune ligne sélectionnée",
+                            "1": "1 ligne sélectionnée"
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 {% endblock %}

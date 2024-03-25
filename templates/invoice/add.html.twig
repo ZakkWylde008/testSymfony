@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Test Symfony
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background-color: #FFFFFF !important;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="mt-2 w-50 container text-center">
+        <h1 class="text-black">Test Symfony</h1>
+    </div>
+    <h3 class="ps-5 pe-5 text-black"><u>Ajout :</u></h3>
+    <div class="pt-2 ps-5 pe-5">
+        {% include "_partials/_invoiceForm.html.twig" %}
+    </div>
+{% endblock %}
