@@ -6,15 +6,14 @@ use App\Entity\Seller;
 
 class SellerInstance
 {
-    private array $data = [];
-
-    public function __construct(array $data){
-        $this->data = $data;
-    }
-
-    public function setSeller(): Seller
+    public function setSeller(array $data): Seller
     {
         $seller = new Seller();
+        $seller->setType($data["typeVNVO"]);
+        $seller->setVn($data["sellerVN"]);
+        $seller->setVo($data["sellerVO"]);
+        $seller->setFolderNumberVNVO($data["folderNumberVNVO"]);
+        $seller->setSalesIntermediaryVN($data["salesIntermediaryVN"]);
 
         return $seller;
     }

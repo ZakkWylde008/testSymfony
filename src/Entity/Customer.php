@@ -22,13 +22,29 @@ class Customer
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $firstname = null;
 
-    #[ORM\OneToOne(inversedBy: 'customer', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Adress $adress = null;
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $street = null;
 
-    #[ORM\OneToOne(inversedBy: 'customer', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Contact $contact = null;
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $adressComplement = null;
+
+    #[ORM\Column(length: 10)]
+    private ?string $postalCode = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $city = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $homePhone = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $mobilePhone = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $jobPhone = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $email = null;
 
     public function getId(): ?int
     {
@@ -71,26 +87,98 @@ class Customer
         return $this;
     }
 
-    public function getAdress(): ?Adress
+    public function getStreet(): ?string
     {
-        return $this->adress;
+        return $this->street;
     }
 
-    public function setAdress(Adress $adress): static
+    public function setStreet(?string $street): static
     {
-        $this->adress = $adress;
+        $this->street = $street;
 
         return $this;
     }
 
-    public function getContact(): ?Contact
+    public function getAdressComplement(): ?string
     {
-        return $this->contact;
+        return $this->adressComplement;
     }
 
-    public function setContact(Contact $contact): static
+    public function setAdressComplement(?string $adressComplement): static
     {
-        $this->contact = $contact;
+        $this->adressComplement = $adressComplement;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode(string $postalCode): static
+    {
+        $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): static
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getHomePhone(): ?string
+    {
+        return $this->homePhone;
+    }
+
+    public function setHomePhone(?string $homePhone): static
+    {
+        $this->homePhone = $homePhone;
+
+        return $this;
+    }
+
+    public function getMobilePhone(): ?string
+    {
+        return $this->mobilePhone;
+    }
+
+    public function setMobilePhone(?string $mobilePhone): static
+    {
+        $this->mobilePhone = $mobilePhone;
+
+        return $this;
+    }
+
+    public function getJobPhone(): ?string
+    {
+        return $this->jobPhone;
+    }
+
+    public function setJobPhone(?string $jobPhone): static
+    {
+        $this->jobPhone = $jobPhone;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): static
+    {
+        $this->email = $email;
 
         return $this;
     }

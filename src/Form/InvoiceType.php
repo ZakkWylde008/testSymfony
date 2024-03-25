@@ -20,63 +20,50 @@ class InvoiceType extends AbstractType
         $builder
             ->add('fileNumber', null, [
                 'label' => 'Numero de fiche',
-                'label_attr' => [
-                    'style' => 'color: black;'
-                ]
-            ])
-            ->add('invoiceComment', null, [
-                'label' => 'Commentaire de facturation',
-                'label_attr' => [
-                    'style' => 'color: black;'
-                ]
-            ])
-            ->add('deliveryDate', null, [
-                'label' => 'Date de livraison',
-                'label_attr' => [
-                    'style' => 'color: black;'
-                ],
-                'widget' => 'single_text',
+                'required' => true
             ])
             ->add('businessAccount', EntityType::class, [
                 'label' => 'Compte affaire',
-                'label_attr' => [
-                    'style' => 'color: black;'
-                ],
+                'required' => true,
                 'class' => BusinessAccount::class,
-                'choice_label' => 'nameAccount',
-            ])
-            ->add('prospectType', EntityType::class, [
-                'label' => 'Type de prospect',
-                'label_attr' => [
-                    'style' => 'color: black;'
-                ],
-                'class' => ProspectType::class,
-                'choice_label' => 'nameProspect',
+                'choice_label' => 'nameAccount'
             ])
             ->add('customer', EntityType::class, [
                 'label' => 'Client',
-                'label_attr' => [
-                    'style' => 'color: black;'
-                ],
+                'required' => true,
                 'class' => Customer::class,
-                'choice_label' => 'name',
-            ])
-            ->add('seller', EntityType::class, [
-                'label' => 'Vendeur',
-                'label_attr' => [
-                    'style' => 'color: black;'
-                ],
-                'class' => Seller::class,
-                'choice_label' => 'folderNumberVNVO',
+                'choice_label' => function($customer) {
+                    return $customer->getName() .' ' .$customer->getFirstname();
+                }
             ])
             ->add('car', EntityType::class, [
                 'label' => 'Voiture',
-                'label_attr' => [
-                    'style' => 'color: black;'
-                ],
+                'required' => true,
                 'class' => Car::class,
-                'choice_label' => 'model',
-            ]);
+                'choice_label' => function($car) {
+                    return $car->getBrandName() .'-' .$car->getVersion().' | immatriculé ' .$car->getRegistration();
+                }
+            ])
+            ->add('seller', EntityType::class, [
+                'label' => 'Vendeur',
+                'class' => Seller::class,
+                'choice_label' => 'folderNumberVNVO'
+            ])
+            ->add('prospectType', EntityType::class, [
+                'label' => 'Type de prospect',
+                'required' => true,
+                'class' => ProspectType::class,
+                'choice_label' => 'nameProspect'
+            ])
+            ->add('invoiceComment', null, [
+                'label' => 'Commentaire de facturation'
+            ])
+            ->add('deliveryDate', null, [
+                'label' => 'Date de livraison',
+                'required' => true,
+                'widget' => 'single_text'
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

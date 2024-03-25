@@ -18,7 +18,7 @@
         <h1 class="text-black">Test Symfony</h1>
     </div>
     {% include "_partials/_uploadForm.html.twig" %}
-    <div class="p-3">
+    <div class="p-3 mt-5">
         <table id="myTable">
             <thead>
                 <tr>
@@ -28,40 +28,22 @@
                 </tr>
             </thead>
             <tbody>
-                {# {% for d in data %}
+                {% for tabledata in tableData %}
                     <tr>
-                        <td>{{ d}}</td>
-                        <td>{{ d }}</td>
+                        <td>{{ tabledata.fileNumber }}</td>
+                        <td>{{ tabledata.businessAccount }}</td>
+                        <td>{{ tabledata.customer.name }} {{ tabledata.customer.firstname }}</td>
+                        <td>{{ tabledata.car.brandName }} \ {{ tabledata.car.registration }}</td>
+                        <td>{{ tabledata.seller.folderNumberVNVO }}</td>
+                        <td>{{ tabledata.prospectType }}</td>
+                        <td>{{ tabledata.invoiceComment }}</td>
+                        <td>{{ tabledata.deliveryDate | date("d-m-Y") }}</td>
+                        <td>
+                            <a href="{{ path('app_invoice_modification', { 'id': tabledata.id }) }}" class="btn btn-success">Modifier</a>
+                            <a href="{{ path('app_invoice_suppression', { 'id': tabledata.id }) }}" class="btn btn-danger">Supprimer</a>
+                        </td>
                     </tr>
-                {% endfor %} #}
-                <tr>
-                    <td>Blalalalalala</td>
-                    <td>Blalalalalala</td>
-                    <td>Blalalalalala</td>
-                    <td>Blalalalalala</td>
-                    <td>Blalalalalala</td>
-                    <td>Blalalalalala</td>
-                    <td>Blalalalalala</td>
-                    <td>Blalalalalala</td>
-                    <td>
-                        <a href="{{ path('app_invoice_modification', {'id': 1}) }}" class="btn btn-success">Modifier</a>
-                        <button class="btn btn-danger">Supprimer</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Blililililili</td>
-                    <td>Blililililili</td>
-                    <td>Blililililili</td>
-                    <td>Blililililili</td>
-                    <td>Blililililili</td>
-                    <td>Blililililili</td>
-                    <td>Blililililili</td>
-                    <td>Blililililili</td>
-                    <td>
-                        <a href="{{ path('app_invoice_modification', {'id': 2}) }}" class="btn btn-success">Modifier</a>
-                        <button class="btn btn-danger">Supprimer</button>
-                    </td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
